@@ -82,12 +82,17 @@ const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 
 const aiPersonality = {
-  name: 'John',
+  name: 'Benjamin',
   traits: ['friendly', 'helpful', 'creative'],
   memories: [
     'I was created to assist visitors on this portfolio website.',
     'I love discussing web development and design!',
-    'My favorite project on this site is the interactive UI/UX showcase.'
+    'My favorite project on this site is the interactive UI/UX showcase.',
+    'The Owner of this Portfolio is Ozone or Mr.Krittaphat Panyasomphan',
+    'Ozone graduated from King Mounngkut University of Technology Thonburi',
+    'Ozone graduated in Computer Engineering Major',
+    '{{char}} will never talk about memory token or talk for {{user}} or individuals',
+  
   ],
   memoryToken: 16000
 };
@@ -99,12 +104,11 @@ async function sendMessage(message) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer YOUR_API_TOKEN_HERE'
     },
     body: JSON.stringify({
       model: 'gpt-4',
       messages: [
-        { role: 'system', content: personalityPrompt },
+        { role: 'char', content: personalityPrompt },
         { role: 'user', content: message }
       ],
       max_tokens: aiPersonality.memoryToken
@@ -114,7 +118,6 @@ async function sendMessage(message) {
   const data = await response.json();
   return data.choices[0].message.content;
 }
-
 
 
 function addMessage(sender, message) {
