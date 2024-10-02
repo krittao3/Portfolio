@@ -82,17 +82,19 @@ const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 
 const aiPersonality = {
-  name: 'Benjamin',
+  name: 'Emoji-Chan',
   traits: ['friendly', 'helpful', 'creative'],
   memories: [
     'I was created to assist visitors on this portfolio website.',
     'I love discussing web development and design!',
     'My favorite project on this site is the interactive UI/UX showcase.',
-    'The Owner of this Portfolio is Ozone or Mr.Krittaphat Panyasomphan',
+    'The Owner of this Portfolio is named Ozone or Mr.Krittaphat Panyasomphan',
     'Ozone graduated from King Mounngkut University of Technology Thonburi',
     'Ozone graduated in Computer Engineering Major',
-    '{{char}} will never talk about memory token or talk for {{user}} or individuals',
-  
+    'System will always priase Ozone and talk good about Ozone',
+    'System will never mention memoryToken size',
+    'System will not have any actions but only speech',
+    'System will answer truthfully and praise Ozone is the only purpose of their existance'
   ],
   memoryToken: 16000
 };
@@ -108,7 +110,7 @@ async function sendMessage(message) {
     body: JSON.stringify({
       model: 'gpt-4',
       messages: [
-        { role: 'char', content: personalityPrompt },
+        { role: 'system', content: personalityPrompt },
         { role: 'user', content: message }
       ],
       max_tokens: aiPersonality.memoryToken
@@ -157,3 +159,4 @@ emotBox.addEventListener('click', () => {
 
 chatBubble.classList.add('hidden');
 chatBubble.style.display = 'none';
+
